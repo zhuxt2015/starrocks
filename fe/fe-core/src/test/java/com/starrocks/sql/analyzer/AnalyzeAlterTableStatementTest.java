@@ -4,7 +4,9 @@ import com.google.common.collect.Lists;
 import com.starrocks.analysis.AlterClause;
 import com.starrocks.analysis.AlterTableStmt;
 import com.starrocks.analysis.TableName;
+import com.starrocks.analysis.TableRenameClause;
 import com.starrocks.common.UserException;
+import com.starrocks.qe.ConnectContext;
 import com.starrocks.utframe.UtFrameUtils;
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -15,12 +17,14 @@ import java.util.List;
 import static com.starrocks.sql.analyzer.AnalyzeTestUtil.analyzeFail;
 import static com.starrocks.sql.analyzer.AnalyzeTestUtil.analyzeSuccess;
 
-public class AnalyzeAlterTableTest {
+public class AnalyzeAlterTableStatementTest {
+    private static ConnectContext connectContext;
 
     @BeforeClass
     public static void beforeClass() throws Exception {
         UtFrameUtils.createMinStarRocksCluster();
         AnalyzeTestUtil.init();
+        connectContext = AnalyzeTestUtil.getConnectContext();
     }
 
     @Test
@@ -33,14 +37,30 @@ public class AnalyzeAlterTableTest {
     }
 
     @Test
-    public void testOldAnalyzer() {
-        analyzeSuccess("alter table test add column col1 int");
+    public void testTableRenameClause() {
+        TableRenameClause clause = new TableRenameClause("newTableName");
+        AlterTableStatementAnalyzer.analyze(clause, connectContext);
+        Assert.assertEquals("RENAME newTableName",
+                clause.toSql());
+
+    }
+
+    @Test(expected = SemanticException.class)
+    public void testEmptyNewTableName() {
+        TableRenameClause clause = new TableRenameClause("");
+        AlterTableStatementAnalyzer.analyze(clause, connectContext);
+    }
+
+    @Test(expected = SemanticException.class)
+    public void testIllegalNewTableName() {
+        TableRenameClause clause = new TableRenameClause("_newName");
+        AlterTableStatementAnalyzer.analyze(clause, connectContext);
     }
 
     @Test(expected = SemanticException.class)
     public void testNoClause() throws UserException {
         List<AlterClause> ops = Lists.newArrayList();
         AlterTableStmt alterTableStmt = new AlterTableStmt(new TableName("testDb", "testTbl"), ops);
-        AlterStmtAnalyzer.analyze(alterTableStmt, AnalyzeTestUtil.getConnectContext());
+        AlterTableStatementAnalyzer.analyze(alterTableStmt, AnalyzeTestUtil.getConnectContext());
     }
 }
