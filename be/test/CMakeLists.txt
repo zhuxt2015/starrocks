@@ -151,7 +151,9 @@ set(EXEC_FILES
         ./storage/primary_key_encoder_test.cpp
         ./storage/tablet_mgr_test.cpp
         ./storage/version_graph_test.cpp
-        storage/lake/group_assigner_test.cpp
+        ./storage/lake/async_delta_writer_test.cpp
+        ./storage/lake/delta_writer_test.cpp
+        ./storage/lake/group_assigner_test.cpp
         ./storage/lake/tablet_manager_test.cpp
         ./storage/lake/tablet_writer_test.cpp
         ./storage/rowset_update_state_test.cpp
@@ -217,6 +219,7 @@ set(EXEC_FILES
         ./runtime/free_list_test.cpp
         ./runtime/int128_arithmetic_ops_test.cpp
         ./runtime/kafka_consumer_pipe_test.cpp
+        ./runtime/lake_tablets_channel_test.cpp
         ./runtime/large_int_value_test.cpp
         ./runtime/memory/chunk_allocator_test.cpp
         ./runtime/memory/system_allocator_test.cpp

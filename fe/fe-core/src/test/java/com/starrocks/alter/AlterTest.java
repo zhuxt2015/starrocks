@@ -157,7 +157,7 @@ public class AlterTest {
     }
 
     private static void createTable(String sql) throws Exception {
-        CreateTableStmt createTableStmt = (CreateTableStmt) UtFrameUtils.parseAndAnalyzeStmt(sql, connectContext);
+        CreateTableStmt createTableStmt = (CreateTableStmt) UtFrameUtils.parseStmtWithNewParser(sql, connectContext);
         GlobalStateMgr.getCurrentState().createTable(createTableStmt);
     }
 
@@ -681,7 +681,7 @@ public class AlterTest {
                 "    \"replication_num\" = \"1\"\n" +
                 ")";
 
-        CreateTableStmt createTableStmt = (CreateTableStmt) UtFrameUtils.parseAndAnalyzeStmt(createSQL, ctx);
+        CreateTableStmt createTableStmt = (CreateTableStmt) UtFrameUtils.parseStmtWithNewParser(createSQL, ctx);
         GlobalStateMgr.getCurrentState().createTable(createTableStmt);
         Database db = GlobalStateMgr.getCurrentState().getDb("default_cluster:test");
 
@@ -751,7 +751,7 @@ public class AlterTest {
                 "    \"replication_num\" = \"1\"\n" +
                 ")";
 
-        CreateTableStmt createTableStmt = (CreateTableStmt) UtFrameUtils.parseAndAnalyzeStmt(createSQL, ctx);
+        CreateTableStmt createTableStmt = (CreateTableStmt) UtFrameUtils.parseStmtWithNewParser(createSQL, ctx);
         GlobalStateMgr.getCurrentState().createTable(createTableStmt);
         Database db = GlobalStateMgr.getCurrentState().getDb("default_cluster:test");
 
@@ -792,7 +792,7 @@ public class AlterTest {
                 "    \"replication_num\" = \"1\"\n" +
                 ")";
 
-        CreateTableStmt createTableStmt = (CreateTableStmt) UtFrameUtils.parseAndAnalyzeStmt(createSQL, ctx);
+        CreateTableStmt createTableStmt = (CreateTableStmt) UtFrameUtils.parseStmtWithNewParser(createSQL, ctx);
         GlobalStateMgr.getCurrentState().createTable(createTableStmt);
         Database db = GlobalStateMgr.getCurrentState().getDb("default_cluster:test");
 
@@ -821,7 +821,7 @@ public class AlterTest {
                 "    \"replication_num\" = \"1\"\n" +
                 ")";
 
-        CreateTableStmt createTableStmt = (CreateTableStmt) UtFrameUtils.parseAndAnalyzeStmt(createSQL, ctx);
+        CreateTableStmt createTableStmt = (CreateTableStmt) UtFrameUtils.parseStmtWithNewParser(createSQL, ctx);
         GlobalStateMgr.getCurrentState().createTable(createTableStmt);
         Database db = GlobalStateMgr.getCurrentState().getDb("default_cluster:test");
 
@@ -861,7 +861,7 @@ public class AlterTest {
                 "    \"replication_num\" = \"1\"\n" +
                 ")";
 
-        CreateTableStmt createTableStmt = (CreateTableStmt) UtFrameUtils.parseAndAnalyzeStmt(createSQL, ctx);
+        CreateTableStmt createTableStmt = (CreateTableStmt) UtFrameUtils.parseStmtWithNewParser(createSQL, ctx);
         GlobalStateMgr.getCurrentState().createTable(createTableStmt);
         Database db = GlobalStateMgr.getCurrentState().getDb("default_cluster:test");
 
@@ -902,7 +902,7 @@ public class AlterTest {
                 "    \"replication_num\" = \"1\"\n" +
                 ")";
 
-        CreateTableStmt createTableStmt = (CreateTableStmt) UtFrameUtils.parseAndAnalyzeStmt(createSQL, ctx);
+        CreateTableStmt createTableStmt = (CreateTableStmt) UtFrameUtils.parseStmtWithNewParser(createSQL, ctx);
         GlobalStateMgr.getCurrentState().createTable(createTableStmt);
         Database db = GlobalStateMgr.getCurrentState().getDb("default_cluster:test");
 
@@ -943,7 +943,7 @@ public class AlterTest {
                 "    \"replication_num\" = \"1\"\n" +
                 ")";
 
-        CreateTableStmt createTableStmt = (CreateTableStmt) UtFrameUtils.parseAndAnalyzeStmt(createSQL, ctx);
+        CreateTableStmt createTableStmt = (CreateTableStmt) UtFrameUtils.parseStmtWithNewParser(createSQL, ctx);
         GlobalStateMgr.getCurrentState().createTable(createTableStmt);
         Database db = GlobalStateMgr.getCurrentState().getDb("default_cluster:test");
 
@@ -986,7 +986,7 @@ public class AlterTest {
                 "    \"replication_num\" = \"1\"\n" +
                 ")";
 
-        CreateTableStmt createTableStmt = (CreateTableStmt) UtFrameUtils.parseAndAnalyzeStmt(createSQL, ctx);
+        CreateTableStmt createTableStmt = (CreateTableStmt) UtFrameUtils.parseStmtWithNewParser(createSQL, ctx);
         GlobalStateMgr.getCurrentState().createTable(createTableStmt);
         Database db = GlobalStateMgr.getCurrentState().getDb("default_cluster:test");
 
@@ -1034,7 +1034,7 @@ public class AlterTest {
                 "    \"replication_num\" = \"1\"\n" +
                 ")";
 
-        CreateTableStmt createTableStmt = (CreateTableStmt) UtFrameUtils.parseAndAnalyzeStmt(createSQL, ctx);
+        CreateTableStmt createTableStmt = (CreateTableStmt) UtFrameUtils.parseStmtWithNewParser(createSQL, ctx);
         GlobalStateMgr.getCurrentState().createTable(createTableStmt);
         Database db = GlobalStateMgr.getCurrentState().getDb("default_cluster:test");
 
@@ -1081,7 +1081,7 @@ public class AlterTest {
                 "    \"replication_num\" = \"1\"\n" +
                 ")";
 
-        CreateTableStmt createTableStmt = (CreateTableStmt) UtFrameUtils.parseAndAnalyzeStmt(createSQL, ctx);
+        CreateTableStmt createTableStmt = (CreateTableStmt) UtFrameUtils.parseStmtWithNewParser(createSQL, ctx);
         GlobalStateMgr.getCurrentState().createTable(createTableStmt);
         Database db = GlobalStateMgr.getCurrentState().getDb("default_cluster:test");
 
@@ -1127,7 +1127,7 @@ public class AlterTest {
                 "    \"replication_num\" = \"1\"\n" +
                 ")";
 
-        CreateTableStmt createTableStmt = (CreateTableStmt) UtFrameUtils.parseAndAnalyzeStmt(createSQL, ctx);
+        CreateTableStmt createTableStmt = (CreateTableStmt) UtFrameUtils.parseStmtWithNewParser(createSQL, ctx);
         GlobalStateMgr.getCurrentState().createTable(createTableStmt);
         Database db = GlobalStateMgr.getCurrentState().getDb("default_cluster:test");
 
@@ -1172,7 +1172,7 @@ public class AlterTest {
                 "    \"replication_num\" = \"1\"\n" +
                 ")";
 
-        CreateTableStmt createTableStmt = (CreateTableStmt) UtFrameUtils.parseAndAnalyzeStmt(createSQL, ctx);
+        CreateTableStmt createTableStmt = (CreateTableStmt) UtFrameUtils.parseStmtWithNewParser(createSQL, ctx);
         GlobalStateMgr.getCurrentState().createTable(createTableStmt);
         Database db = GlobalStateMgr.getCurrentState().getDb("default_cluster:test");
 
@@ -1217,7 +1217,7 @@ public class AlterTest {
                 "    \"replication_num\" = \"1\"\n" +
                 ")";
 
-        CreateTableStmt createTableStmt = (CreateTableStmt) UtFrameUtils.parseAndAnalyzeStmt(createSQL, ctx);
+        CreateTableStmt createTableStmt = (CreateTableStmt) UtFrameUtils.parseStmtWithNewParser(createSQL, ctx);
         GlobalStateMgr.getCurrentState().createTable(createTableStmt);
         Database db = GlobalStateMgr.getCurrentState().getDb("default_cluster:test");
 
