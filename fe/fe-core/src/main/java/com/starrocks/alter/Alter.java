@@ -203,8 +203,9 @@ public class Alter {
             db.writeUnlock();
         }
     }
+
     public void processAlterMaterializedView(AlterMaterializedViewStatement stmt)
-            throws DdlException, MetaNotFoundException, AnalysisException {
+            throws DdlException, MetaNotFoundException {
         // check db
         final TableName mvName = stmt.getMvName();
         final String oldMvName = mvName.getTbl();
@@ -225,7 +226,7 @@ public class Alter {
             }
 
             if (materializedView == null) {
-                throw new MetaNotFoundException("Materialized view " + mvName + " is not find");
+                throw new MetaNotFoundException("Materialized view " + mvName + " is not found");
             }
             // check materialized view state
             if (materializedView.getState() != OlapTableState.NORMAL) {
@@ -247,8 +248,7 @@ public class Alter {
         }
     }
 
-    private void processChangeRefreshScheme(RefreshSchemeDesc refreshSchemeDesc, MaterializedView materializedView)
-            throws DdlException {
+    private void processChangeRefreshScheme(RefreshSchemeDesc refreshSchemeDesc, MaterializedView materializedView) {
         final MaterializedView.MvRefreshScheme refreshScheme = materializedView.getRefreshScheme();
         if (refreshSchemeDesc instanceof AsyncRefreshSchemeDesc) {
             AsyncRefreshSchemeDesc asyncRefreshSchemeDesc = (AsyncRefreshSchemeDesc) refreshSchemeDesc;

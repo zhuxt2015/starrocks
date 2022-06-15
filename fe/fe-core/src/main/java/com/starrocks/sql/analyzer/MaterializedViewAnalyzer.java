@@ -43,8 +43,8 @@ import com.starrocks.sql.ast.SelectRelation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -60,7 +60,7 @@ public class MaterializedViewAnalyzer {
 
     static class MaterializedViewAnalyzerVisitor extends AstVisitor<Void, ConnectContext> {
 
-        public enum TimeUnit {
+        public enum RefreshTimeUnit {
             YEAR,
             MONTH,
             WEEK,
@@ -331,7 +331,6 @@ public class MaterializedViewAnalyzer {
                 }
                 if (refreshSchemeDesc instanceof AsyncRefreshSchemeDesc) {
                     AsyncRefreshSchemeDesc async = (AsyncRefreshSchemeDesc) refreshSchemeDesc;
-                    LocalDateTime startTime = async.getStartTime();
                     final IntervalLiteral intervalLiteral = async.getIntervalLiteral();
                     if (intervalLiteral != null) {
                         long step = ((IntLiteral) intervalLiteral.getValue()).getLongValue();
@@ -340,9 +339,11 @@ public class MaterializedViewAnalyzer {
                         }
                         final String unit = intervalLiteral.getUnitIdentifier().getDescription().toUpperCase();
                         try {
-                            TimeUnit.valueOf(unit);
+                            RefreshTimeUnit.valueOf(unit);
                         } catch (IllegalArgumentException e) {
-                            throw new SemanticException("Unsupported interval expr: %s", unit);
+                            throw new SemanticException(
+                                    "Unsupported interval unit: %s, only timeunit %s are supported.", unit,
+                                    Arrays.asList(RefreshTimeUnit.values()));
                         }
                     }
                 }
