@@ -829,13 +829,6 @@ public class Config extends ConfigBase {
     public static int max_allowed_in_element_num_of_delete = 10000;
 
     /**
-     * only limit for Row-based storage.
-     * set to Integer.MAX_VALUE, cause starrocks is already Column-based storage
-     */
-    @ConfField(mutable = true)
-    public static int max_layout_length_per_row = Integer.MAX_VALUE;
-
-    /**
      * The multi cluster feature will be deprecated in version 0.12
      * set this config to true will disable all operations related to cluster feature, include:
      * create/drop cluster
@@ -1520,7 +1513,30 @@ public class Config extends ConfigBase {
     public static int quorom_publish_wait_time_ms = 5000;
 
     /**
-     * Fqdn function switch,
+     * FE journal queue size
+     * Write log will fail if queue is full
+     **/
+    @ConfField(mutable = true)
+    public static int metadata_journal_queue_size = 1000;
+
+    /**
+     * The maxium size(key+value) of journal entity to write as a batch
+     * Increase this configuration if journal queue is always full
+     * TODO: set default value
+     **/
+    @ConfField(mutable = true)
+    public static int metadata_journal_max_batch_size_mb = 10;
+
+    /**
+     * The maxium number of journal entity to write as a batch
+     * Increase this configuration if journal queue is always full
+     * TODO: set default value
+     **/
+    @ConfField(mutable = true)
+    public static int metadata_journal_max_batch_cnt = 100;
+
+    /**
+     * Fqdn function switch, 
      * this switch will be deleted after release the fqdn func
      */
     @ConfField(mutable = true)
