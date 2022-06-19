@@ -60,7 +60,6 @@ import com.starrocks.persist.BackendTabletsInfo;
 import com.starrocks.persist.BatchDropInfo;
 import com.starrocks.persist.BatchModifyPartitionsInfo;
 import com.starrocks.persist.ChangeMaterializedViewRefreshSchemeLog;
-import com.starrocks.persist.ClusterInfo;
 import com.starrocks.persist.ColocatePersistInfo;
 import com.starrocks.persist.ConsistencyCheckInfo;
 import com.starrocks.persist.CreateInsertOverwriteJobLog;

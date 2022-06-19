@@ -183,8 +183,6 @@ import com.starrocks.mysql.privilege.PrivPredicate;
 import com.starrocks.persist.BackendIdsUpdateInfo;
 import com.starrocks.persist.BackendTabletsInfo;
 import com.starrocks.persist.ChangeMaterializedViewRefreshSchemeLog;
-import com.starrocks.persist.DatabaseInfo;
-import com.starrocks.persist.DropLinkDbAndUpdateDbInfo;
 import com.starrocks.persist.DropPartitionInfo;
 import com.starrocks.persist.EditLog;
 import com.starrocks.persist.GlobalVarPersistInfo;
